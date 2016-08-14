@@ -30,7 +30,7 @@ namespace MarioWindows
 				ControlStyles.OptimizedDoubleBuffer |
 				ControlStyles.UserPaint, true);
 		}
-	}
+	} //test
 
 	class MainForm : Form
 	{

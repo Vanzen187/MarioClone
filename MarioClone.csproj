@@ -39,4 +39,19 @@
   <ItemGroup>
     <Compile Include="MainForm.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Backgrounds\HappyClouds.png" />
+    <None Include="Assets\Backgrounds\HappyCloudsAndGrass.png" />
+    <None Include="Assets\Sprites\Blocks\Ground1.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioJumpingLeft.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioJumpingRight.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStandingLeft.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStandingRight.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStep1Left.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStep1Right.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStep2Left.png" />
+    <None Include="Assets\Sprites\MarioSprite\MarioStep2Right.png" />
+    <None Include="Assets\Sprites\MarioSprite\shawnhiltsLeft.png" />
+    <None Include="Assets\Sprites\MarioSprite\shawnhiltsRight.png" />
+  </ItemGroup>
 </Project>
