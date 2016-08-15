@@ -68,8 +68,6 @@ namespace MarioWindows
 		bool isJumping;
 		bool isFacingRight;
 
-		string filepath = @"C:\Users\EVAN.uRZEN\Desktop\CS\MarioWindows";
-		//string filepath = @"C:\Users\Evan\Desktop\MarioWindows";
 		string line;
 		string[] row;
 
@@ -173,6 +171,8 @@ namespace MarioWindows
 
 			currentMario = standingRight;
 			eMario.top = 11 * 50;
+			eMario.topBound = eMario.top / squareYSize;
+			eMario.leftBound = eMario.leftProgress / squareXSize;
 
 
 			reader = new StreamReader(File.OpenRead(@"..\..\testLevel.csv"));
@@ -276,11 +276,11 @@ namespace MarioWindows
 					for(int j = eMario.topBound; j < eMario.topBound + 2; j++)
 					{
 						if (column [i] [j].image > 0)
-					{
+						{
 							if (eMario.left < column [i] [j].left + squareXSize &&
-								eMario.left + squareXSize > column [i] [j].left &&
-								eMario.top < column [i] [j].top + squareYSize &&
-								eMario.top + squareYSize > column [i] [j].top)
+							    eMario.left + squareXSize > column [i] [j].left &&
+							    eMario.top < column [i] [j].top + squareYSize &&
+							    eMario.top + squareYSize > column [i] [j].top)
 							{
 								if (moveRight)
 								{
@@ -289,16 +289,14 @@ namespace MarioWindows
 								} else
 								{
 									eMario.left = column [i] [j].left + squareXSize;
-									eMario.leftProgress = column [i] [j].leftProgress + squareXSize ;
+									eMario.leftProgress = column [i] [j].leftProgress + squareXSize;
 								}
-								//xAccel = 0;
 							}
-
-						}
-
+						} 
+						else if (j == eMario.topBound + 1 && i == eMario.leftBound + 1)
+							isJumping = true;
 					}
 				}
-
 			}
 
 
