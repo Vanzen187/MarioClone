@@ -49,6 +49,8 @@ namespace MarioWindows
 		int yAccel = 0;
 		int panelHeight = 650;
 		int panelWidth = 1050;
+		int levelHeight = 13;
+		int jumpHeight = 4;
 		int gravity = 1;
 		int jumpSpeed = -20;
 		int marioXSize = 50;
@@ -83,6 +85,8 @@ namespace MarioWindows
 		Image step2Right;
 		Image step2Left;
 		Image ground1;
+		Image flagPole;
+		Image flagTop;
 
 		Image[] walkingRight;
 		Image[] walkingLeft;
@@ -119,6 +123,10 @@ namespace MarioWindows
 				{
 					if (column[i][j].image == 1)
 						g.DrawImage(ground1, column[i][j].left, column[i][j].top, squareXSize, squareYSize);
+					else if (column[i][j].image == 2)
+						g.DrawImage(flagPole, column[i][j].left, column[i][j].top, squareXSize, squareYSize);
+					else if (column[i][j].image == 3)
+						g.DrawImage(flagTop, column[i][j].left, column[i][j].top, squareXSize, squareYSize);
 				}
 			}
 			onRow++;
@@ -168,6 +176,8 @@ namespace MarioWindows
 			step2Right = Image.FromFile(@"..\..\Assets\Sprites\MarioSprite\MarioStep2Right.png");
 			step2Left = Image.FromFile(@"..\..\Assets\Sprites\MarioSprite\MarioStep2Left.png");
 			ground1 = Image.FromFile(@"..\..\Assets\Sprites\Blocks\Ground1.png");
+			flagPole = Image.FromFile(@"..\..\Assets\Sprites\Blocks\FlagPole.png");
+			flagTop = Image.FromFile(@"..\..\Assets\Sprites\Blocks\FlagTop.png");
 
 			currentMario = standingRight;
 			eMario.top = 11 * 50;
@@ -176,16 +186,17 @@ namespace MarioWindows
 
 
 			reader = new StreamReader(File.OpenRead(@"..\..\testLevel.csv"));
-			while (!reader.EndOfStream && onRow <=12)
+
+			while (!reader.EndOfStream && onRow < levelHeight)
 			{
 				line = reader.ReadLine ();
 				row = line.Split (',');
 
-
 				for(int i = 0; i<row.Length; i++)
 				{
 					if (onRow == 0)
-						column.Add (new Entity[13]);
+						column.Add (new Entity[levelHeight + jumpHeight]);
+
 					column [i] [onRow].image = Int32.Parse (row [i]);
 					column [i] [onRow].left = i * squareXSize;
 					column [i] [onRow].leftProgress = i * squareXSize;
@@ -327,7 +338,7 @@ namespace MarioWindows
 			{
 				for(int j = eMario.topBound; j < eMario.topBound + 2; j++)
 				{
-					if (column [i] [j].image > 0)
+  					if (column [i] [j].image > 0)
 					{
 						if (eMario.left < column [i] [j].left + squareXSize &&
 							eMario.left + squareXSize > column [i] [j].left &&
